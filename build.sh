@@ -18,6 +18,7 @@ else
         sudo apt install libsdl2-dev -y # installing automatically lib dependencis
     else
 	printf "${RED}Please Using: ${GREEN}Internet${NC}\n" # If user not using connection in user computer.
+	exit 1
     fi
 fi
 
