@@ -33,7 +33,7 @@ else
   exit 1
 fi
 
-# compile all files
+# Check all files
 for i in ${!FILES[@]}; do
 	printf "[$i] ${GREEN}Compile: ${FILES[$i]}${NC}\n"
 	${COMPILE} -c $FLAGS_COMPILE_OUT ${FILES[$i]}
