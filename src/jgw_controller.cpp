@@ -8,6 +8,7 @@
 #include "../app/include/jgw_play.h"
 #include "../app/include/jgw_compile_wav.h"
 #include "../app/include/jgw_compile.h"
+#include "../app/include/jgw_compile_exec.h"
 
 int main(int argc, const char* argv[]) {
 	// variable args renamed from argv variable
@@ -66,6 +67,13 @@ int main(int argc, const char* argv[]) {
 	{
 		JGW_COMPILE_WAV jcw;
 		jcw.main(argc_args, args);
+	}
+
+	// IF COMPILE TO EXECUTABLE
+	else if(argvs == "--compile-exec")
+	{
+		COMPILE_EXEC CPE;
+		CPE.main(argc_args, args);
 	}
 
 	// IF NOT EXIST
