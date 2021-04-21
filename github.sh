@@ -6,16 +6,51 @@ GREEN="\033[0;32m" # color green
 RED="\033[0;31m" # color red
 NC="\033[0m" # color reset
 
+# check dependencis
+if [ -d "/usr/include/SDL2/" ] 
+then
+    # if dependencis for linux user it's already.
+    printf "${GREEN} Dependencis already${NC}\n"
+else
+    # check connection of user
+    wget -q --tries=10 --timeout=20 --spider http://google.com
+    if [[ $? -eq 0 ]]; then  
+        sudo apt install libsdl2-dev -y # installing automatically lib dependencis
+    else
+        printf "${RED}Please Using: ${GREEN}Internet${NC}\n" # If user not using connection in user computer.
+        exit 1
+    fi
+fi
+
 # settings all variable in this
 COMPILE="g++" # default compile: g++, support for clang (clang+)
-NAME_OUTPUT="jgw"
+
+# check compiler
+if [ -d "/usr/bin/$COMPILE" ] 
+then
+  printf "Compiler: ${GREEN}${COMPILER}${NC} It's Exist\n"
+else
+  # check connection of user
+  wget -q --tries=10 --timeout=20 --spider http://google.com
+  if [[ $? -eq 0 ]]; then  
+      sudo apt install g++ gcc -y # installing automatically lib dependencis
+  else
+      printf "${RED}Please Using: ${GREEN}Internet${NC}\n" # If user not using connection in user computer.
+      exit 1
+  fi
+fi
+
 FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
     "src/jgw_controller.cpp" "app/worker/frequency.cpp" \
     "system/linux/sound.cpp" "src/jgw_play.cpp" \
     "app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
-    "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp") # all file in array string (array<String>)
-FILES_NAME=("*") # get all file object (*.o)
+    "src/jgw_compile_wav.cpp")
 
+# settings all variable in this
+COMPILE="g++" # default compile: g++, support for clang (clang+)
+NAME_OUTPUT="jgw"
+
+FILES_NAME=("*") # get all file object (*.o)
 # if you won't in release in mode remove -D_DEV in variable FLAGS_COMPILE_OUT
 FLAGS_COMPILE_OUT="-O3 -D_DEV" # Flags in compile out into object file (.o)
 FLAGS_COMPILE_FINISH="-O3 `sdl2-config --cflags --libs`" # Flags in compile out to binary file or executable file
