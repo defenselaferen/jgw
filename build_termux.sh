@@ -13,7 +13,7 @@ FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
     "src/jgw_controller.cpp" "app/worker/frequency.cpp" \
     "system/linux/sound.cpp" "src/jgw_play.cpp" \
     "app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
-    "src/jgw_compile_wav.cpp") # all file in array string (array<String>)
+    "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp") # all file in array string (array<String>)
 FILES_NAME=("*") # get all file object (*.o)
 
 # if you won't in release in mode remove -D_DEV in variable FLAGS_COMPILE_OUT
