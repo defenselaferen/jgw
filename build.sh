@@ -12,7 +12,8 @@ else
     if [[ $? -eq 0 ]]; then  
         sudo apt install libsdl2-dev
     else
-	printf "${RED}Please Using: ${GREEN}Internet${NC}\n"
+        printf "${RED}Please Using: ${GREEN}Internet${NC}\n" # If user not using connection in user computer.
+        exit 1
     fi
 fi
 
