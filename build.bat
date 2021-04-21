@@ -5,7 +5,7 @@ set NAME_OUTPUT=jgw
 set OUTPUT_FOLDER=out
 set OUTPUT_SRC=out_src
 REM if you won't in release mode remove -D_DEV
-set FLAGS_COMPILE_OUT=-O3 -D_DEV
+set FLAGS_COMPILE_OUT=-D_DEV
 set LIST_FILE=app/worker/util.cpp app/worker/helper.cpp src/jgw_controller.cpp app/worker/frequency.cpp system/windows/sound.cpp src/jgw_play.cpp app/worker/fileshelp.cpp src/jgw_compile.cpp src/jgw_compile_wav.cpp system/windows/jgw_compile_exec.cpp
 set LIST_SRC=*.o
 
