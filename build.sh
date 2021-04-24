@@ -25,7 +25,7 @@ FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
     "system/linux/sound.cpp" "src/jgw_play.cpp" \
     "app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
     "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp" \
-	"system/linux/jgw_compile_cpp.cpp" "app/worker/ccm.cpp" \
+	  "system/linux/jgw_compile_cpp.cpp" "app/worker/ccm.cpp" \
     "app/worker/ls.cpp" "app/worker/pwd.cpp" "app/worker/color.cpp" \
     "app/worker/exec1.cpp" "app/worker/exec2.cpp" "app/worker/exit.cpp" \
     "app/worker/cd.cpp" "app/worker/clear.cpp")
