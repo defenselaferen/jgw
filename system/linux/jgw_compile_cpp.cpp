@@ -7,14 +7,53 @@
 #include <cstring>
 
 #include "../../app/include/util.h"
-#include "../../app/include/jgw_compile_exec.h"
+#include "../../app/include/jgw_compile_cpp.h"
 #include "../../app/include/structure.h"
 
-std::string source_code_complets;
-std::string source_code_main;
+std::string source_code_complets_v2;
+std::string source_code_main_v2;
 
-void init_source_code() {
-	std::array<std::string, 154> source_code_array = {
+void startCompile_v2(std::string nameFile) {
+	std::fstream inputFile;
+    inputFile.open(nameFile, std::ios::in | std::ios::binary | std::ios::ate);
+    std::vector<compileSound> compilingSoundGet;
+
+    for(int i = 0; i < ((int)inputFile.tellg()); i += 1)
+    {
+        compileSound _BUFF_;
+        inputFile.seekg(i * sizeof(compileSound));
+
+        inputFile.read((char*)&_BUFF_, sizeof(compileSound));
+        
+        for(int j = 0; j < _BUFF_.duplicate; j++) {
+            compilingSoundGet.push_back(_BUFF_);
+        }
+    }
+
+    compilingSoundGet[compilingSoundGet.size() - 1].S_HZ = 0;
+    compilingSoundGet[compilingSoundGet.size() - 1].D_DURATION = 0;
+    inputFile.close();
+
+    std::vector<std::string> source_code_main_v2_vector;
+    source_code_main_v2_vector.push_back("int main(int argc, const char* argv[]){\n");
+
+    source_code_main_v2_vector.push_back("\tsound snd;\n");
+    for(unsigned int i = 0; i < compilingSoundGet.size(); i++) {
+    	source_code_main_v2_vector.push_back("\tsnd.tone(" + std::to_string((double)compilingSoundGet[i].S_HZ) + ", " + std::to_string((int)compilingSoundGet[i].D_DURATION) + ");\n");
+    }
+
+    source_code_main_v2_vector.push_back("\t{\n");
+    source_code_main_v2_vector.push_back("\t\t(void)argc;\n");
+    source_code_main_v2_vector.push_back("\t\t(void)argv;\n");
+    source_code_main_v2_vector.push_back("\t}\n");
+    source_code_main_v2_vector.push_back("\treturn 0;\n");
+    source_code_main_v2_vector.push_back("}\n");
+
+    for(unsigned int i = 0; i < source_code_main_v2_vector.size(); i++) {
+    	source_code_main_v2 += source_code_main_v2_vector[i];
+    }
+
+    std::array<std::string, 154> source_code_array = {
 		"#include <iostream>\n",
 		"#include <string>\n",
 		"// for lubrary include for linux\n",
@@ -61,7 +100,7 @@ void init_source_code() {
 		"const int AMPLITUDE = 28000;\n",
 		"const int FREQUENCY = 44100;\n",
 		"\n",
-		source_code_main,
+		source_code_main_v2,
 		"\n",
 		"// function contructor prototype\n",
 		"Beeper::Beeper() {\n",
@@ -171,72 +210,20 @@ void init_source_code() {
 		"}"
 	};
 	for(int i = 0; i < ((int)sizeof(source_code_array) / sizeof(std::string)); i++) {
-		source_code_complets += source_code_array[i];
+		source_code_complets_v2 += source_code_array[i];
 	}
-}
 
-void startCompile(std::string nameFile) {
-	std::fstream inputFile;
-    inputFile.open(nameFile, std::ios::in | std::ios::binary | std::ios::ate);
-    std::vector<compileSound> compilingSoundGet;
-
-    for(int i = 0; i < ((int)inputFile.tellg()); i += 1)
-    {
-        compileSound _BUFF_;
-        inputFile.seekg(i * sizeof(compileSound));
-
-        inputFile.read((char*)&_BUFF_, sizeof(compileSound));
-        
-        for(int j = 0; j < _BUFF_.duplicate; j++) {
-            compilingSoundGet.push_back(_BUFF_);
-        }
-    }
-
-    compilingSoundGet[compilingSoundGet.size() - 1].S_HZ = 0;
-    compilingSoundGet[compilingSoundGet.size() - 1].D_DURATION = 0;
-    inputFile.close();
-
-    std::vector<std::string> source_code_main_vector;
-    source_code_main_vector.push_back("int main(int argc, const char* argv[]){\n");
-
-    source_code_main_vector.push_back("\tsound snd;\n");
-    for(unsigned int i = 0; i < compilingSoundGet.size(); i++) {
-    	source_code_main_vector.push_back("\tsnd.tone(" + std::to_string((double)compilingSoundGet[i].S_HZ) + ", " + std::to_string((int)compilingSoundGet[i].D_DURATION) + ");\n");
-    }
-
-    source_code_main_vector.push_back("\t{\n");
-    source_code_main_vector.push_back("\t\t(void)argc;\n");
-    source_code_main_vector.push_back("\t\t(void)argv;\n");
-    source_code_main_vector.push_back("\t}\n");
-    source_code_main_vector.push_back("\treturn 0;\n");
-    source_code_main_vector.push_back("}\n");
-
-    for(unsigned int i = 0; i < source_code_main_vector.size(); i++) {
-    	source_code_main += source_code_main_vector[i];
-    }
-
-    init_source_code();
     {
     	std::fstream code_compile;
     	code_compile.open(nameFile + ".cpp", std::ios::trunc | std::ios::out);
-    	code_compile << source_code_complets;
+    	code_compile << source_code_complets_v2;
     	code_compile.close();
-
-    	std::string cmd = "g++ " + nameFile + ".cpp " + 
-    					"-O3 `sdl2-config --cflags --libs` -o " + nameFile + ".out";
-    	{
-			auto empt = system(cmd.c_str());
-		}
-    	cmd = "rm -rf " + nameFile + ".cpp";
-    	{
-			auto empt = system(cmd.c_str());
-		}
     }
 }
 
-int COMPILE_EXEC::main(int argc, const char* argv[]) {
+int COMPILE_CPP::main(int argc, const char* argv[]) {
 	for(int i = 0; i < argc; i++) {
-		startCompile(argv[i]);
+		startCompile_v2(argv[i]);
 	}
 	{
 		(void)argc;
