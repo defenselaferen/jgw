@@ -94,9 +94,13 @@ void startCompile(std::string nameFile) {
 
     	std::string cmd = "g++ " + nameFile + ".cpp " + 
     					"-O3 -o " + nameFile + ".exe";
-    	system(cmd.c_str());
+		{
+			auto empt = system(cmd.c_str());
+		}
     	cmd = "del " + nameFile + ".cpp";
-    	system(cmd.c_str());
+    	{
+			auto empt = system(cmd.c_str());
+		}
     }
 }
 
