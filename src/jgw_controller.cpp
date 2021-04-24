@@ -9,6 +9,7 @@
 #include "../app/include/jgw_compile_wav.h"
 #include "../app/include/jgw_compile.h"
 #include "../app/include/jgw_compile_exec.h"
+#include "../app/include/jgw_compile_cpp.h"
 
 int main(int argc, const char* argv[]) {
 	// variable args renamed from argv variable
@@ -73,6 +74,13 @@ int main(int argc, const char* argv[]) {
 	else if(argvs == "--compile-exec")
 	{
 		COMPILE_EXEC CPE;
+		CPE.main(argc_args, args);
+	}
+
+	// IF COMPILE TO CPP CODE
+	else if(argvs == "--compile-cpp")
+	{
+		COMPILE_CPP CPE;
 		CPE.main(argc_args, args);
 	}
 
