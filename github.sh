@@ -44,7 +44,7 @@ FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
     "src/jgw_controller.cpp" "app/worker/frequency.cpp" \
     "system/linux/sound.cpp" "src/jgw_play.cpp" \
     "app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
-    "src/jgw_compile_wav.cpp")
+    "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp")
 
 # settings all variable in this
 COMPILE="g++" # default compile: g++, support for clang (clang+)

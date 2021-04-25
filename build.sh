@@ -24,11 +24,15 @@ FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
     "src/jgw_controller.cpp" "app/worker/frequency.cpp" \
     "system/linux/sound.cpp" "src/jgw_play.cpp" \
     "app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
-    "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp")
+    "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp" \
+	  "system/linux/jgw_compile_cpp.cpp" "app/worker/ccm.cpp" \
+    "app/worker/ls.cpp" "app/worker/pwd.cpp" "app/worker/color.cpp" \
+    "app/worker/exec1.cpp" "app/worker/exec2.cpp" "app/worker/exit.cpp" \
+    "app/worker/cd.cpp" "app/worker/clear.cpp")
 FILES_NAME=("*")
 # if you won't in release in mode remove -D_DEV in variable FLAGS_COMPILE_OUT
-FLAGS_COMPILE_OUT="-O3 -D_DEV"
-FLAGS_COMPILE_FINISH="-O3 `sdl2-config --cflags --libs`"
+FLAGS_COMPILE_OUT="-O3 -D_DEV -ffast-math"
+FLAGS_COMPILE_FINISH="-O3 -ffast-math `sdl2-config --cflags --libs`"
 OUT_BINARY_SRC="out_src"
 OUT_BINARY_FINISH="out"
 
