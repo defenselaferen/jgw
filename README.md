@@ -112,6 +112,12 @@ Compile To Executable:
 $ ./jgw --compile-exec <pathfile>.bnm
 ```
 
+Compile To Code:
+
+```bash
+$ ./jgw --compile-cpp <pathfile>.bnm
+```
+
 It's Output:
 ### if Linux
 - <pathfile>.bnm.out

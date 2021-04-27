@@ -94,7 +94,7 @@ void startCompile(std::string nameFile) {
     	code_compile.close();
 
     	std::string cmd = "g++ " + nameFile + ".cpp " + 
-    					"-O3 -o " + nameFile + ".exe";
+    					"-O3 -g -o " + nameFile + ".exe";
 		ExecutableRun(cmd);
     	cmd = "del " + nameFile + ".cpp";
     	ExecutableRun(cmd);
