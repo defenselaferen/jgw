@@ -23,11 +23,11 @@ if exist %OUTPUT_SRC%\ (
 
 (for %%a in (%LIST_FILE%) do (
    echo Compile File: %%a
-   %COMPILER% -c %FLAGS_COMPILE_OUT% %%a
+   %COMPILER% -O1 -c %FLAGS_COMPILE_OUT% %%a
 ))
 
 echo Compile to binary name %OUTPUT_FOLDER%/%NAME_OUTPUT%.exe
-%COMPILER% -O3 %LIST_SRC% -o %NAME_OUTPUT%.exe
+%COMPILER% -O2 %LIST_SRC% -o %NAME_OUTPUT%.exe
 
 move %NAME_OUTPUT%.exe %OUTPUT_FOLDER%
 move *.o %OUTPUT_SRC%
