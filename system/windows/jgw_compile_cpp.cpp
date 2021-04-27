@@ -91,8 +91,8 @@ void startCompile_v2(std::string nameFile) {
     	code_compile << source_code_complets_v2;
     	code_compile.close();
 	    
-	std::string cmd = "g++ " + nameFile + "_S.cpp " + 
-    					"-O2 `sdl2-config --cflags --libs` -o " + nameFile + ".cpp";
+		std::string cmd = "g++ -E " + nameFile + "_S.cpp " + 
+    					"-O3 -g `sdl2-config --cflags --libs` -o " + nameFile + ".cpp";
     	ExecutableRun(cmd);
     	cmd = "rm -rf " + nameFile + "_S.cpp";
     	ExecutableRun(cmd);
