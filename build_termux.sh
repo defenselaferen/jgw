@@ -10,16 +10,19 @@ NC="\033[0m" # color reset
 COMPILE="g++" # default compile: g++, support for clang (clang+)
 NAME_OUTPUT="jgw"
 FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
-    "src/jgw_controller.cpp" "app/worker/frequency.cpp" \
-    "system/linux/sound.cpp" "src/jgw_play.cpp" \
-    "app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
-    "src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp" \
-	"system/linux/jgw_compile_cpp.cpp") # all file in array string (array<String>)
+	"src/jgw_controller.cpp" "app/worker/frequency.cpp" \
+	"system/linux/sound.cpp" "src/jgw_play.cpp" \
+	"app/worker/fileshelp.cpp" "src/jgw_compile.cpp" \
+	"src/jgw_compile_wav.cpp" "system/linux/jgw_compile_exec.cpp" \
+	"system/linux/jgw_compile_cpp.cpp" "app/worker/ccm.cpp" \
+	"app/worker/ls.cpp" "app/worker/pwd.cpp" "app/worker/color.cpp" \
+	"app/worker/exec1.cpp" "app/worker/exec2.cpp" "app/worker/exit.cpp" \
+	"app/worker/cd.cpp" "app/worker/clear.cpp") # all file in array string (array<String>)
 FILES_NAME=("*") # get all file object (*.o)
 
 # if you won't in release in mode remove -D_DEV in variable FLAGS_COMPILE_OUT
-FLAGS_COMPILE_OUT="-O3 -D_DEV" # Flags in compile out into object file (.o)
-FLAGS_COMPILE_FINISH="-O3 `sdl2-config --cflags --libs`" # Flags in compile out to binary file or executable file
+FLAGS_COMPILE_OUT="-O1 -g -D_DEV" # Flags in compile out into object file (.o)
+FLAGS_COMPILE_FINISH="-O2 -g `sdl2-config --cflags --libs`" # Flags in compile out to binary file or executable file
 OUT_BINARY_SRC="out_src" # out src object (.o) directory
 OUT_BINARY_FINISH="out" # out executable file directory
 

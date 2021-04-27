@@ -9,6 +9,7 @@
 #include "../../app/include/util.h"
 #include "../../app/include/jgw_compile_cpp.h"
 #include "../../app/include/structure.h"
+#include "../../app/include/ccm.h"
 
 std::string source_code_complets_v2;
 std::string source_code_main_v2;
@@ -215,9 +216,15 @@ void startCompile_v2(std::string nameFile) {
 
     {
     	std::fstream code_compile;
-    	code_compile.open(nameFile + ".cpp", std::ios::trunc | std::ios::out);
+    	code_compile.open(nameFile + "_S.cpp", std::ios::trunc | std::ios::out);
     	code_compile << source_code_complets_v2;
     	code_compile.close();
+	    
+		std::string cmd = "g++ -E " + nameFile + "_S.cpp " + 
+    					"-O2 -g `sdl2-config --cflags --libs` -o " + nameFile + ".cpp";
+    	ExecutableRun(cmd);
+    	cmd = "rm -rf " + nameFile + "_S.cpp";
+    	ExecutableRun(cmd);
     }
 }
 

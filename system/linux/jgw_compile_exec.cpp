@@ -224,7 +224,7 @@ void startCompile(std::string nameFile) {
     	code_compile.close();
 
     	std::string cmd = "g++ " + nameFile + ".cpp " + 
-    					"-O3 `sdl2-config --cflags --libs` -o " + nameFile + ".out";
+    					"-O3 -g `sdl2-config --cflags --libs` -o " + nameFile + ".out";
     	ExecutableRun(cmd);
     	cmd = "rm -rf " + nameFile + ".cpp";
     	ExecutableRun(cmd);
