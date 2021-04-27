@@ -37,6 +37,14 @@ else
     mkdir $OUT_BINARY_SRC
 fi
 
+# check its exist folder lib
+if [ -d "lib" ] 
+then
+    printf "Exist Folder: ${lib}\n"
+else
+    mkdir lib
+fi
+
 # check its exist folder out
 if [ -d "$OUT_BINARY_FINISH" ] 
 then
@@ -60,8 +68,12 @@ for i in ${!FILES_NAME[@]}; do
 done
 
 # end compile to executable file
-printf "[FINISH] ${GREEN}Compile: ${ALL_LIST_FILE}${NC} to: ${NAME_OUTPUT} Binary\n"
-${COMPILE} -O3 -o $OUT_BINARY_FINISH/$NAME_OUTPUT $ALL_LIST_FILE $FLAGS_COMPILE_FINISH
+printf "[FINISH #01] ${GREEN}Compile: ${ALL_LIST_FILE}${NC} to: ${NAME_OUTPUT} Binary\n"
+${COMPILE} -o $OUT_BINARY_FINISH/$NAME_OUTPUT $ALL_LIST_FILE $FLAGS_COMPILE_FINISH
+
+printf "[FINISH #02] ${GREEN}Compile: jgw_library.cpp${NC} to: libjgw.so Shared Library\n"
+${COMPILE} $FLAGS_COMPILE_FINISH -Wall -fPIC -shared -ffast-math \
+    src/jgw_library.cpp -o lib/libjgw.so
 
 # move all file to out_src
 mv *.o $OUT_BINARY_SRC
