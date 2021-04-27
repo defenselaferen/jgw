@@ -21,8 +21,8 @@ FILES=("app/worker/util.cpp" "app/worker/helper.cpp" \
 FILES_NAME=("*") # get all file object (*.o)
 
 # if you won't in release in mode remove -D_DEV in variable FLAGS_COMPILE_OUT
-FLAGS_COMPILE_OUT="-O1 -D_DEV" # Flags in compile out into object file (.o)
-FLAGS_COMPILE_FINISH="-O2 `sdl2-config --cflags --libs`" # Flags in compile out to binary file or executable file
+FLAGS_COMPILE_OUT="-O1 -g -D_DEV" # Flags in compile out into object file (.o)
+FLAGS_COMPILE_FINISH="-O2 -g `sdl2-config --cflags --libs`" # Flags in compile out to binary file or executable file
 OUT_BINARY_SRC="out_src" # out src object (.o) directory
 OUT_BINARY_FINISH="out" # out executable file directory
 
