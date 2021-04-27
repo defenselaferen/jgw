@@ -106,6 +106,27 @@ It's Output:
 - <pathfile>.bnm.wav
 
 
+Compile To Executable:
+
+```bash
+$ ./jgw --compile-exec <pathfile>.bnm
+```
+
+Compile To Code:
+
+```bash
+$ ./jgw --compile-cpp <pathfile>.bnm
+```
+
+It's Output:
+### if Linux
+- <pathfile>.bnm.out
+
+### if Windows
+- <pathfile>.bnm.exe
+
+
+
 ## Requirements
 You must have this requirements:
 - clang or g++
