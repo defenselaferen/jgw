@@ -9,6 +9,7 @@
 #include "../../app/include/util.h"
 #include "../../app/include/jgw_compile_exec.h"
 #include "../../app/include/structure.h"
+#include "../../app/include/ccm.h"
 
 std::string source_code_complets;
 std::string source_code_main;
@@ -224,13 +225,9 @@ void startCompile(std::string nameFile) {
 
     	std::string cmd = "g++ " + nameFile + ".cpp " + 
     					"-O3 `sdl2-config --cflags --libs` -o " + nameFile + ".out";
-    	{
-			auto empt = system(cmd.c_str());
-		}
+    	ExecutableRun(cmd);
     	cmd = "rm -rf " + nameFile + ".cpp";
-    	{
-			auto empt = system(cmd.c_str());
-		}
+    	ExecutableRun(cmd);
     }
 }
 
