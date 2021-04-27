@@ -76,7 +76,7 @@ PATH=$PATH:`pwd`/out
 
 # test compile
 cd test
-jgw --compile main
-jgw --compile-exec main.bnm
-jgw --compile-cpp main.bnm
-jgw --compile-wav main.bnm
+jgw --compile test
+jgw --compile-exec test.bnm
+jgw --compile-cpp test.bnm
+jgw --compile-wav test.bnm
