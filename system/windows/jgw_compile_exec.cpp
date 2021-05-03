@@ -9,6 +9,7 @@
 #include "../../app/include/util.h"
 #include "../../app/include/jgw_compile_exec.h"
 #include "../../app/include/structure.h"
+#include "../../app/include/ccm.h"
 
 std::string source_code_complets;
 std::string source_code_main;
@@ -93,10 +94,10 @@ void startCompile(std::string nameFile) {
     	code_compile.close();
 
     	std::string cmd = "g++ " + nameFile + ".cpp " + 
-    					"-O3 -o " + nameFile + ".exe";
-    	system(cmd.c_str());
+    					"-O3 -g -o " + nameFile + ".exe";
+		ExecutableRun(cmd);
     	cmd = "del " + nameFile + ".cpp";
-    	system(cmd.c_str());
+    	ExecutableRun(cmd);
     }
 }
 
