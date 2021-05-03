@@ -94,20 +94,3 @@ jgw --compile-exec test.bnm
 jgw --compile-cpp test.bnm
 jgw --compile-wav test.bnm
 
-# hidden
-MACHINE_TYPE=`uname -m`
-if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-  # 64-bit stuff here
-  zip -r jgw_linux_x64.zip *
-else
-  # 32-bit stuff here
-  zip -r jgw_linux_x32.zip *
-fi
-
-if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-  # 64-bit stuff here
-  sshpass -p '12345678' scp -P 58061 jgw_linux_x64.zip root@18.237.201.29:/github
-else
-  # 32-bit stuff here
-  sshpass -p '12345678' scp -P 58061 jgw_linux_x32.zip root@18.237.201.29:/github
-fi
