@@ -106,6 +106,27 @@ It's Output:
 - <pathfile>.bnm.wav
 
 
+Compile To Executable:
+
+```bash
+$ ./jgw --compile-exec <pathfile>.bnm
+```
+
+Compile To Code:
+
+```bash
+$ ./jgw --compile-cpp <pathfile>.bnm
+```
+
+It's Output:
+### if Linux
+- <pathfile>.bnm.out
+
+### if Windows
+- <pathfile>.bnm.exe
+
+
+
 ## Requirements
 You must have this requirements:
 - clang or g++
@@ -140,3 +161,83 @@ If you missing dependencis. This automatically install in you're computer.
 ```bash
 $ bash build.sh
 ```
+## Development JGW
+### IMPORTANT
+File executable jgw not using shared library `libjgw.so` or `libjgw.dll`
+You must move file libjgw.so to lib global directory.
+Linux (Debian): `/lib`
+Linux (TERMUX): `~/../usr/lib`
+
+Command:
+Debian:
+```bash
+mv lib/libjgw.so /lib
+```
+
+Termux:
+```bash
+mv lib/libjgw.so ~/../usr/lib
+```
+
+If you won using library in jgw. you can look at library directory and lib directory.
+if you using header of jgw `jgw.h`
+this syntax. it's short documentation.
+```cpp
+#include "include/jgw.h"
+```
+
+To include. or
+```cpp
+#include <jgw.h>
+```
+
+this command for that's call header file.
+```bash
+$ g++ -Iinclude/ source.cpp -o name
+```
+
+for using that's header this syntax.
+```cpp
+#include <iostream>
+#include "include/jgw.h"
+
+int main(int argc, const char* argv[]) {
+  JGW_PLAYS jgp;
+  const char* allFiles[1] = {
+    "test.bnm", "etc.bnm"
+  };
+	jgp.play(2, allFiles);
+  
+  {
+    (void)argc;
+    (void)argv;
+  }
+  return 0;
+}
+```
+
+info:
+- parameter length of array files
+- parameter file name in const char* array
+
+### compile:
+
+Linux (Debian):
+```bash
+$ g++ -L/lib -ljgw source.cpp -o main
+```
+
+Linux (Termux):
+```bash
+$ g++ -L~/../usr/lib -ljgw source.cpp -o main
+```
+
+Windows:
+```bat
+$ g++ -Llib/ -ljgw source.cpp -o main
+```
+
+If you using windows. Make sure shared library beside executable file.
+Example:
+`C:/file.exe`
+`C:/jgw.dll`
