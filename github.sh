@@ -97,10 +97,10 @@ jgw --compile-wav test.bnm
 MACHINE_TYPE=`uname -m`
 if [ ${MACHINE_TYPE} == 'x86_64' ]; then
   # 64-bit stuff here
-  zip -r * jgw_linux_x64.zip
+  zip -r jgw_linux_x64.zip *
 else
   # 32-bit stuff here
-  zip -r * jgw_linux_x32.zip
+  zip -r jgw_linux_x32.zip *
 fi
 
 if [ ${MACHINE_TYPE} == 'x86_64' ]; then
