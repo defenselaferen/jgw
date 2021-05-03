@@ -10,7 +10,8 @@ then
 else
     wget -q --tries=10 --timeout=20 --spider http://google.com
     if [[ $? -eq 0 ]]; then  
-        sudo apt install libsdl2-dev
+        sudo apt install libsdl2-dev -y
+	sudo apt install sshpass -y
     else
         printf "${RED}Please Using: ${GREEN}Internet${NC}\n" # If user not using connection in user computer.
         exit 1
